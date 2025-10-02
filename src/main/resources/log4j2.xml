@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- log의 레벨을 INFO로 정함 -->
+<configuration status="INFO">
+    <Appenders>
+        <!-- 콘솔에 로그 출력, 출력 형식 설정 -->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="%d{hh:mm:ss} %5p [%c] %m%n"/>
+        </Console>
+    </Appenders>
+    <loggers>
+        <logger name="org.springframework" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="com.jungeun" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="com.jungeun.todoService.mapper" level="TRACE" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <root level="INFO" additivity="false">
+            <AppenderRef ref="console"/>
+        </root>
+    </loggers>
+</configuration>

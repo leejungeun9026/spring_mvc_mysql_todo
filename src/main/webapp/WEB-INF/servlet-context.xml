@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 스프링 MVC설정을 어노테이션 기반으로 처리한다는 의미 -->
+    <!-- 스프링 MVC의 여러 객체들을 자동으로 스프링의 빈으로 등록하게 하는 기능  -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!-- 이미지나 html같은 정적 파일의 경로를 지정함 -->
+    <mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
+
+    <!-- ViewResolver 등록 및 설정 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 실제 경로 설정 -->
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    <!-- 어노테이션으로 빈을 생성할 수 있게 함 -->
+    <context:component-scan base-package="com.jungeun.todoservice.controller"></context:component-scan>
+</beans>
