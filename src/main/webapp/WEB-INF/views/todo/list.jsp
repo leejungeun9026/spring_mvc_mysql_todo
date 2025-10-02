@@ -30,7 +30,7 @@
                         <c:forEach items="${todoList}" var="todo">
                             <tr>
                                 <th scope="row">${todo.tno}</th>
-                                <td><a href="/board/view">${todo.title}</a></td>
+                                <td><a href="/todo/view?tno=${todo.tno}">${todo.title}</a></td>
                                 <td>${todo.writer}</td>
                                 <td>${todo.duedate}</td>
                                 <td>${todo.finished}</td>

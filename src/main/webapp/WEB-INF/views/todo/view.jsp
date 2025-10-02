@@ -18,7 +18,7 @@
         <div class="card-body">
           <div class="mb-3">
             <label for="title" class="form-label">번호</label>
-            <input name="title" type="text" class="form-control" id="title" value="${todo.num}">
+            <input name="title" type="text" class="form-control" id="title" value="${todo.tno}">
           </div>
           <div class="mb-3">
             <label for="title" class="form-label">제목</label>
@@ -31,7 +31,7 @@
           </div>
           <div class="mb-3">
             <label for="duedate" class="form-label">duedate</label>
-            <input name="duedate" type="text" class="form-control" id="duedate" value="${todo.duedate}"
+            <input name="duedate" type="text" class="form-control" id="duedate" value="${todo.duedate}">
           </div>
           <div class="mb-3">
             <label for="writer" class="form-label">작성자</label>
@@ -40,7 +40,7 @@
           <div class="mb-3">
             <label for="" class="form-label">Finishied</label>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="checkDefault" ${todo.finished == 1 ? "checked":""} disabled>
+              <input class="form-check-input" type="checkbox" value="" id="checkDefault" ${todo.finished? "checked":""} disabled>
               <label class="form-check-label" for="checkDefault">
                 완료
               </label>

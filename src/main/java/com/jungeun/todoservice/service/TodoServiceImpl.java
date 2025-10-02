@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TodoServiceImpl implements TodoService {
-    private final TodoMapper todoMapper;
-    private final ModelMapper modelMapper;
+  private final TodoMapper todoMapper;
+  private final ModelMapper modelMapper;
 
-    @Override
-    public List<TodoDTO> findAll() {
-        List<TodoVO> todoVOs = todoMapper.selectTodoList();
-        List<TodoDTO> todoList = todoVOs.stream().map(vo->modelMapper.map(vo, TodoDTO.class)).collect(Collectors.toList());
+  @Override
+  public List<TodoDTO> findAll() {
+    List<TodoVO> todoVOs = todoMapper.selectTodoList();
+    List<TodoDTO> todoList = todoVOs.stream().map(vo -> modelMapper.map(vo, TodoDTO.class)).collect(Collectors.toList());
 //        List<TodoDTO> todoDTOs = new ArrayList<>();
 //        for (TodoVO todoVO : todoList) {
 //            TodoDTO todoDTO = new TodoDTO();
@@ -30,22 +30,22 @@ public class TodoServiceImpl implements TodoService {
 //            ...
 //            todoDTOs.add(todoDTO);
 //        }
-        return todoList;
-    }
+    return todoList;
+  }
 
   @Override
   public TodoDTO getTodo(int tno) {
-      TodoVO todoVO = todoMapper.selectTodoOne(tno);
-      TodoDTO todoDTO = modelMapper.map(todoVO, TodoDTO.class);
+    TodoVO todoVO = todoMapper.selectTodoOne(tno);
+    TodoDTO todoDTO = modelMapper.map(todoVO, TodoDTO.class);
     return todoDTO;
   }
 
   @Override
-    public int insertTodo(TodoDTO todoDTO) {
-        TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
-        int result = todoMapper.insertTodo(todoVO);
-        return result;
-    }
+  public int insertTodo(TodoDTO todoDTO) {
+    TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+    int result = todoMapper.insertTodo(todoVO);
+    return result;
+  }
 
 
 }

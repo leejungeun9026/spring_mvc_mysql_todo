@@ -44,6 +44,6 @@ public class TodoController {
 
   @GetMapping("/view")
   public void todoView(@RequestParam("tno") int tno, Model model) {
-    model.addAllAttributes("todo", todoService.getTodo(tno));
+    model.addAttribute("todo", todoService.getTodo(tno));
   }
 }
