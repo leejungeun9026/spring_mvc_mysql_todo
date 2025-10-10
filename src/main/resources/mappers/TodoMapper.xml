@@ -3,13 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jungeun.todoservice.mapper.TodoMapper">
-    <select id="selectTodoList" resultType="com.jungeun.todoservice.domain.TodoVO">
+    <select id="getTodoList" resultType="com.jungeun.todoservice.domain.TodoVO">
         select * from tbltodo order by tno desc
     </select>
+    <select id="selectTodoList" resultType="com.jungeun.todoservice.domain.TodoVO">
+        select * from tbltodo order by tno desc limit #{skip}, #{size}
+    </select>
+    <select id="getCount" resultType="int">
+        select count(tno) from tbltodo
+    </select>
     <select id="selectTodoOne" resultType="com.jungeun.todoservice.domain.TodoVO">
-        select * from tbltodo where tno = #{tno}
+        select * from tbltodo where tno=#{tno}
     </select>
     <insert id="insertTodo">
         insert into tbltodo(title, content, duedate, writer) values(#{title}, #{content}, #{duedate}, #{writer})
     </insert>
+    <update id="updateTodo">
+        update tbltodo set title=#{title}, content=#{content}, duedate=#{duedate}, finished=#{finished} where tno=#{tno}
+    </update>
+    <delete id="deleteTodo">
+        delete from tbltodo where tno=#{tno}
+    </delete>
 </mapper>

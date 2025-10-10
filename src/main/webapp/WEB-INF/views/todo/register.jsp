@@ -13,7 +13,7 @@
     <div class="col">
       <div class="card">
         <div class="card-header">
-          <h2 class="mb-0">Todo 등록하기</h2>
+          <h5 class="mb-0">Todo 등록하기</h5>
         </div>
         <div class="card-body">
           <form action="/todo/register" method="post" class="mb-0">
@@ -39,7 +39,14 @@
               <button type="reset" class="btn btn-secondary">다시작성</button>
               <button type="button" class="btn btn-secondary" onclick="location.href='/todo/list'">목록으로</button>
             </div>
-            </form>
+          </form>
+          <script>
+            const serverValidResult={}
+            <c:forEach items="${errors}" var="error">
+              serverValidResult['${error.getField()}']='${error.defaultMessage}'
+            </c:forEach>
+            console.log(serverValidResult);
+          </script>
         </div>
       </div>
     </div>

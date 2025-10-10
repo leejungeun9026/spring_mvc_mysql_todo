@@ -35,7 +35,7 @@ public class TodoTest {
 
     @Test
     public void selectTodoListTest(){
-        List<TodoVO> todoList = todoMapper.selectTodoList();
+        List<TodoVO> todoList = todoMapper.getTodoList();
         for (TodoVO todoVO : todoList) {
             log.info("todoVO : " + todoVO);
         }

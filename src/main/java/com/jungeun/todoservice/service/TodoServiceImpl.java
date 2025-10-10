@@ -1,6 +1,8 @@
 package com.jungeun.todoservice.service;
 
-import com.jungeun.todoservice.domain.TodoDTO;
+import com.jungeun.todoservice.dto.PageRequestDTO;
+import com.jungeun.todoservice.dto.PageResponseDTO;
+import com.jungeun.todoservice.dto.TodoDTO;
 import com.jungeun.todoservice.domain.TodoVO;
 import com.jungeun.todoservice.mapper.TodoMapper;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +10,6 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class TodoServiceImpl implements TodoService {
 
   @Override
   public List<TodoDTO> findAll() {
-    List<TodoVO> todoVOs = todoMapper.selectTodoList();
+    List<TodoVO> todoVOs = todoMapper.getTodoList();
     List<TodoDTO> todoList = todoVOs.stream().map(vo -> modelMapper.map(vo, TodoDTO.class)).collect(Collectors.toList());
 //        List<TodoDTO> todoDTOs = new ArrayList<>();
 //        for (TodoVO todoVO : todoList) {
@@ -47,5 +48,25 @@ public class TodoServiceImpl implements TodoService {
     return result;
   }
 
+  @Override
+  public int modifyTodo(TodoDTO todoDTO) {
+    TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+    int result = todoMapper.updateTodo(todoVO);
+    return result;
+  }
 
+  @Override
+  public int removeTodo(int tno) {
+    int result = todoMapper.deleteTodo(tno);
+    return result;
+  }
+
+  @Override
+  public PageResponseDTO getPageTodoList(PageRequestDTO pageRequestDTO) {
+    List<TodoVO> voList = todoMapper.selectTodoList(pageRequestDTO);
+    List<TodoDTO> dtoList = voList.stream().map(vo -> modelMapper.map(vo, TodoDTO.class)).collect(Collectors.toList());
+    int total = todoMapper.getCount(pageRequestDTO);
+    PageResponseDTO<TodoDTO> pageResponseDTO = PageResponseDTO.<TodoDTO>withAll().dtoList(dtoList).total(total).pageRequestDTO(pageRequestDTO).build();
+    return pageResponseDTO;
+  }
 }
