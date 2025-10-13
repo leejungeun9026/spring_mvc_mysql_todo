@@ -1,6 +1,8 @@
 package com.jungeun.todoservice;
 
 import com.jungeun.todoservice.domain.TodoVO;
+import com.jungeun.todoservice.dto.PageRequestDTO;
+import com.jungeun.todoservice.dto.PageResponseDTO;
 import com.jungeun.todoservice.mapper.TodoMapper;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -45,5 +47,12 @@ public class TodoTest {
     public void selectOne(){
       TodoVO todo = todoMapper.selectTodoOne(1);
       log.info("todoVO : " + todo);
+    }
+
+    @Test
+    public void testSelectSearch(){
+      PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).types(new String[]{"t","w"}).keyword("테스트").finished(true).build();
+      List<TodoVO> voList = todoMapper.selectTodoList(pageRequestDTO);
+      voList.forEach(vo -> log.info(vo));
     }
 }

@@ -8,6 +8,7 @@ import com.jungeun.todoservice.mapper.TodoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +18,10 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TodoServiceImpl implements TodoService {
-  private final TodoMapper todoMapper;
-  private final ModelMapper modelMapper;
+  @Autowired
+  private TodoMapper todoMapper;
+  @Autowired
+  private ModelMapper modelMapper;
 
   @Override
   public List<TodoDTO> findAll() {

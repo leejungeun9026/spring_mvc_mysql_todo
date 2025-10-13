@@ -28,7 +28,6 @@
             <label for="content" class="form-label">내용</label>
             <textarea name="content" class="form-control" id="content" cols="30" rows="5"
                       id="content" readonly>${todo.content}</textarea>
-            <img src="/resources/images/hellokitty.jpg" width="200">
           </div>
           <div class="mb-3">
             <label for="duedate" class="form-label">duedate</label>
