@@ -90,8 +90,8 @@
                   </a>
                 </li>
                 <c:forEach begin="${responseDTO.start}" end="${responseDTO.end}" var="num">
-                  <li class="page-item ${responseDTO.page==num?"active":""}"><a class="page-link" href="#"
-                                                                                data-num="${num}">${num}</a>
+                  <li class="page-item ${responseDTO.page==num?"active":""}">
+                    <a class="page-link" href="#" data-num="${num}">${num}</a>
                   </li>
                 </c:forEach>
                 <li class="page-item ${responseDTO.next ? "" : "disabled"}">
@@ -110,7 +110,9 @@
                         return
                     }
                     const num = target.getAttribute("data-num")
-                    self.location = `/todo/list?page=\${num}`
+                    const formObj = document.querySelector("form")
+                    formObj.innerHTML+=`<input type="hidden" name="page" value="\${num}">`
+                    formObj.submit();
                 }, false)
             </script>
 
